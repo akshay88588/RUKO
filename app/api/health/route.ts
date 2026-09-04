@@ -12,9 +12,16 @@ export const maxDuration = 60;
  */
 export async function GET() {
   const configured = allConfiguredModels();
-  const results = await Promise.all(
-    configured.map(async (m) => ({ ...m, ...(await probeModel(m.id)) }))
-  );
+  const cache = new Map<string, { ok: boolean; latencyMs: number; error?: string }>();
+  const results = [];
+  for (const m of configured) {
+    let r = cache.get(m.id);
+    if (!r) {
+      r = await probeModel(m.id);
+      cache.set(m.id, r);
+    }
+    results.push({ ...m, ...r });
+  }
 
   const keySet = Boolean(process.env.FEATHERLESS_API_KEY);
   const primariesOk = results.filter((r) => r.tier === "primary" && r.ok).length;
