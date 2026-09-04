@@ -13,7 +13,7 @@
  * agree with each other's mistakes. See docs/DECISIONS.md #3.
  */
 
-import { callRole, parseJson } from "../featherless";
+import { callRoleJson } from "../featherless";
 import type { CallResult } from "../featherless";
 import type { DefenceResult, EvidenceReport, ExtractedAsk } from "../types";
 
@@ -51,7 +51,7 @@ export async function defend(
     ? evidence.items.map((i) => `- [${i.status.toUpperCase()}] ${i.label}: ${i.detail}`).join("\n")
     : "- (no technical signals found)";
 
-  const call = await callRole(
+  const { data: raw, call } = await callRoleJson<Partial<DefenceResult>>(
     "DEFEND",
     [
       { role: "system", content: SYSTEM },
@@ -74,10 +74,8 @@ ${prosecutionReasoning}
 Now argue for legitimacy.`,
       },
     ],
-    { temperature: 0.3, maxTokens: 600, jsonMode: true }
+    { temperature: 0.3, maxTokens: 1400 }
   );
-
-  const raw = parseJson<Partial<DefenceResult>>(call.content);
 
   const result: DefenceResult = {
     can_be_legitimate: raw.can_be_legitimate === true,

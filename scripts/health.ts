@@ -21,9 +21,20 @@ async function main() {
   console.log("  confidence threshold:", CONFIDENCE_THRESHOLD, "\n");
 
   let failures = 0;
+  const cache = new Map<string, { ok: boolean; latencyMs: number; error?: string }>();
   for (const m of allConfiguredModels()) {
     process.stdout.write(`  ${m.role.padEnd(8)} ${m.tier.padEnd(9)} ${m.id.padEnd(42)}`);
-    const r = await probeModel(m.id);
+    let r = cache.get(m.id);
+    if (!r) {
+      r = await probeModel(m.id);
+      if (!r.ok && r.error?.includes("429")) {
+        // Featherless free plan allows 4 model switches per rolling minute
+        process.stdout.write("(waiting 60s for 4-switch/min window)... ");
+        await new Promise((res) => setTimeout(res, 60000));
+        r = await probeModel(m.id);
+      }
+      cache.set(m.id, r);
+    }
     if (r.ok) {
       console.log(`OK   ${r.latencyMs}ms`);
     } else {

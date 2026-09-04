@@ -5,7 +5,7 @@
 ```
 INPUT      raw message text (SMS / WhatsApp / email), max 8000 chars
    ↓
-TRIAGE     Qwen/Qwen3.5-4B
+TRIAGE     Qwen/Qwen3-8B
            Extracts: action demanded, rupee amount, claimed identity,
            the literal demand sentence, the pressure sentence, whether the
            message discourages telling anyone.
@@ -30,7 +30,7 @@ PROSECUTE  deepseek-ai/DeepSeek-V4-Flash
            argue the message is fraudulent. Returns confidence, tactics,
            what the sender actually wants, and reasoning citing the evidence.
    ↓
-DEFEND     meta-llama/Llama-3.3-70B-Instruct   (different vendor family)
+DEFEND     zai-org/GLM-5.3                     (different vendor family)
            Given the same inputs plus the prosecution's reasoning, argue the
            message is legitimate. Returns strength and a decisive check.
    ↓

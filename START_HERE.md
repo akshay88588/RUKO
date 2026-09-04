@@ -53,8 +53,17 @@ copy .env.example .env.local
 
 ```cmd
 npm install
-npm run health
+npm run models     :: finds model ids your key can actually call
+npm run health     :: re-verifies whatever you put in .env.local
 ```
+
+`npm run models` exists because two things bite here: the Featherless catalogue moves, and
+**every `meta-llama/*` id is gated** — it returns HTTP 403 unless your account has a linked
+HuggingFace licence. The script probes candidates with your own key, enforces the rule that
+DEFEND must be a different vendor family from REASON, and prints a block to paste into
+`.env.local`. If a role has no working candidate, add ids from
+<https://featherless.ai/models> to the `CANDIDATES` list at the top of `scripts/find-models.ts`
+and re-run.
 
 **This is the step that decides whether the model roster in `.env.local` is real.** The model ids I
 put in `.env.example` came from the Featherless catalogue page, but I could not call the API from my

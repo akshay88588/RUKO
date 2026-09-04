@@ -6,7 +6,7 @@
  * to imagine it, so it reasons over facts instead of vibes.
  */
 
-import { callRole, parseJson } from "../featherless";
+import { callRoleJson } from "../featherless";
 import type { CallResult } from "../featherless";
 import type { EvidenceReport, ExtractedAsk, ProsecutionResult } from "../types";
 
@@ -38,7 +38,7 @@ export async function prosecute(
     ? evidence.items.map((i) => `- [${i.status.toUpperCase()}] ${i.label}: ${i.detail}`).join("\n")
     : "- (no technical signals found)";
 
-  const call = await callRole(
+  const { data: raw, call } = await callRoleJson<Partial<ProsecutionResult>>(
     "REASON",
     [
       { role: "system", content: SYSTEM },
@@ -56,10 +56,8 @@ VERIFIED EVIDENCE (gathered by code, not by a model):
 ${evidenceBlock}`,
       },
     ],
-    { temperature: 0.2, maxTokens: 700, jsonMode: true }
+    { temperature: 0.2, maxTokens: 1600 }
   );
-
-  const raw = parseJson<Partial<ProsecutionResult>>(call.content);
 
   const result: ProsecutionResult = {
     fraudulent: raw.fraudulent === true,

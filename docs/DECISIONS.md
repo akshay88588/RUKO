@@ -40,7 +40,9 @@ ourselves. The asymmetry is deliberate — code outranks opinion, in that direct
 
 ## 3. The defence model must be a different vendor family
 
-**Chose:** prosecution on DeepSeek, defence on Llama. Not two sizes of the same family.
+**Chose:** prosecution on DeepSeek, defence on Zhipu's GLM. Not two sizes of the same family.
+(We originally paired DeepSeek with Llama; Featherless gates `meta-llama/*` behind a HuggingFace
+licence, so we moved to GLM. The requirement was never a specific vendor, only a different one.)
 
 **Gave up:** the convenience of one provider and one prompt style.
 

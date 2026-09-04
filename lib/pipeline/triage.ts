@@ -7,7 +7,7 @@
  * share of traffic without ever waking a large model.
  */
 
-import { callRole, parseJson } from "../featherless";
+import { callRoleJson } from "../featherless";
 import type { ExtractedAsk } from "../types";
 import type { CallResult } from "../featherless";
 
@@ -32,16 +32,17 @@ Rules:
 - Output the JSON object and nothing else.`;
 
 export async function triage(message: string): Promise<{ ask: ExtractedAsk; call: CallResult }> {
-  const call = await callRole(
+  // maxTokens is generous because several open-weight models emit a <think>
+  // block first. Too small a budget and they run out mid-thought and return
+  // nothing at all.
+  const { data: raw, call } = await callRoleJson<Partial<ExtractedAsk>>(
     "TRIAGE",
     [
       { role: "system", content: SYSTEM },
       { role: "user", content: message },
     ],
-    { temperature: 0, maxTokens: 400, jsonMode: true }
+    { temperature: 0, maxTokens: 1200 }
   );
-
-  const raw = parseJson<Partial<ExtractedAsk>>(call.content);
 
   const validActions = [
     "send_money", "share_otp_or_credential", "click_link", "install_app",

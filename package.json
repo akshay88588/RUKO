@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "health": "tsx scripts/health.ts",
-    "eval": "tsx eval/run-eval.ts"
+    "eval": "tsx eval/run-eval.ts",
+    "probe": "tsx scripts/probe-raw.ts",
+    "models": "tsx scripts/find-models.ts"
   },
   "dependencies": {
     "next": "14.2.15",

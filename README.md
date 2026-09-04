@@ -100,14 +100,14 @@ OpenAI-compatible API. Every id is read from the environment, never hardcoded.
 
 | Role | Primary | Fallback | Why |
 |---|---|---|---|
-| **TRIAGE** | `Qwen/Qwen3.5-4B` | `meta-llama/Llama-3.2-3B-Instruct` | Small and cheap enough to run on every message. Only names the demanded action. |
-| **PROSECUTION** | `deepseek-ai/DeepSeek-V4-Flash` | `zai-org/GLM-5.3` | Reasoning over the extracted demand plus verified evidence. |
-| **DEFENCE** | `meta-llama/Llama-3.3-70B-Instruct` | `google/gemma-4-31B-it` | **Different family from prosecution, on purpose.** |
+| **TRIAGE** | `Qwen/Qwen3-8B` | `google/gemma-4-E4B-it` | Small and cheap enough to run on every message. Only names the demanded action. |
+| **PROSECUTION** | `deepseek-ai/DeepSeek-V4-Flash` | `Qwen/Qwen3.8-27B` | Reasoning over the extracted demand plus verified evidence. |
+| **DEFENCE** | `zai-org/GLM-5.3` | `google/gemma-4-31B-it` | **Different family from prosecution, on purpose.** |
 
 **Why Featherless is structural, not decorative:** the defence model must come from a different
 training lineage than the prosecution model. Two models from one family share failure modes and
 agree with each other's mistakes — which is exactly the correlated error that produces a confident
-wrong answer about someone's money. Getting Qwen, DeepSeek and Llama behind one API is what makes
+wrong answer about someone's money. Getting Qwen, DeepSeek, Zhipu and Google models behind one API is what makes
 the adversarial check possible at all. On a single closed vendor there is no second family to ask,
 and the design collapses back into one model checking its own homework.
 
@@ -115,8 +115,11 @@ and the design collapses back into one model checking its own homework.
 trips no deterministic danger signal is resolved by the 4B model alone and never reaches a large
 one. The router panel shows which model ran, why, and how long it took.
 
-**Model availability changes.** `npm run health` and `GET /api/health` probe every configured id
-and report which are actually alive, so the roster is verified rather than assumed.
+**Model availability changes, and some models are gated.** Featherless serves `meta-llama/*` only
+to accounts with a linked HuggingFace licence — they return HTTP 403 otherwise. `npm run models`
+probes candidate ids with your own key and prints a roster you can actually call, enforcing the
+different-family rule between PROSECUTION and DEFENCE. `npm run health` and `GET /api/health`
+re-verify the configured roster before a demo.
 
 ## Evaluation
 
