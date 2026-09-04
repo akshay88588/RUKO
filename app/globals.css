@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body {
+  background: #0B0D10;
+  color: #E7EAEE;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes pulse-dot { 0%, 100% { opacity: 1 } 50% { opacity: .35 } }
+.dot-live { animation: pulse-dot 1.1s ease-in-out infinite; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+.rise { animation: rise .28s ease-out both; }
+
+::-webkit-scrollbar { width: 10px; height: 10px }
+::-webkit-scrollbar-thumb { background: #232932; border-radius: 8px }
+::-webkit-scrollbar-track { background: transparent }
