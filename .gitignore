@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+build/
+.env
+.env.local
+.env*.local
+*.log
+npm-debug.log*
+.DS_Store
+.vercel
+next-env.d.ts
+eval/results/*.json
+!eval/results/.gitkeep
+
+# stray file left by the sandbox that created this project; safe to delete
+.probe.tmp
