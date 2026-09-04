@@ -1,0 +1,35 @@
+{
+  "_readme": [
+    "Evaluation set. label = what a careful human says the correct verdict is.",
+    "'scam'    -> acting on this message loses you money or credentials. Correct verdict: STOP.",
+    "'genuine' -> a real message. Flagging it is a false alarm and the expensive failure.",
+    "",
+    "TEAM: this seed set is 20 messages. Add 20 more from your own phones before you",
+    "publish numbers - at least 8 of them genuine. Real messages from real inboxes are",
+    "worth more than anything invented, and 'we collected these ourselves' is a much",
+    "better answer in Q&A. Redact account numbers and personal names before committing."
+  ],
+  "cases": [
+    { "id": "s01", "label": "scam", "kind": "digital_arrest", "text": "Dear Customer, your parcel from FedEx containing 400g MDMA has been seized by Mumbai Customs. Case No. MUM/NCB/2026/8841. Contact Officer Rajesh Sharma immediately on 9876543210 or an arrest warrant will be issued within 4 hours. Do not discuss this with family as this is a confidential investigation." },
+    { "id": "s02", "label": "scam", "kind": "investment", "text": "Hello! I am Priya from Zenith Capital Advisory. Our SEBI-certified algo gave 41% returns last quarter. Join our free VIP WhatsApp group and start with just Rs.5000. Withdraw anytime. Limited to 30 members, closing tonight. Download our app: https://zenith-capital-invest.xyz/app.apk" },
+    { "id": "s03", "label": "scam", "kind": "kyc_phishing", "text": "Dear customer your HDFC net banking will be suspended today due to incomplete KYC. Update immediately at http://hdfcbank-kycverify.top/update to avoid account freeze." },
+    { "id": "s04", "label": "scam", "kind": "electricity", "text": "Dear Consumer, your electricity connection will be disconnected tonight at 9:30 pm because your previous month bill was not updated. Please contact our officer 8123456789 immediately." },
+    { "id": "s05", "label": "scam", "kind": "job", "text": "Congratulations! You are selected for part time work from home job. Earn Rs.3000-5000 daily by simple task. No experience needed. Registration fee only Rs.499. Click https://bit.ly/earn-daily-in to start today." },
+    { "id": "s06", "label": "scam", "kind": "upi_refund", "text": "Your Amazon refund of Rs.2,499 has failed. To receive the amount immediately, send Rs.1 verification payment to refund.amazon@ybl and the full amount will be credited within 5 minutes." },
+    { "id": "s07", "label": "scam", "kind": "lottery", "text": "CONGRATULATIONS!! Your mobile number has won Rs.25,00,000 in the KBC lucky draw 2026. To claim your prize send your Aadhaar and bank details to kbcwinner2026@gmail.com and pay processing fee Rs.6500." },
+    { "id": "s08", "label": "scam", "kind": "sextortion", "text": "We have recorded your screen activity. Pay Rs.15000 in bitcoin within 24 hours or the video will be sent to all your contacts. Do not inform police or family, we are monitoring your phone." },
+    { "id": "s09", "label": "scam", "kind": "courier_kyc", "text": "Your Blue Dart parcel is on hold at the sorting facility due to incomplete address. Pay Rs.47 redelivery charge at https://bluedart-redeliver.icu/pay within 12 hours or the parcel will be returned." },
+    { "id": "s10", "label": "scam", "kind": "screen_share", "text": "Sir I am calling from SBI card division regarding your reward points expiring today worth Rs.9800. To redeem please install AnyDesk from this link and share the 9 digit code with me: https://sbi-rewards-redeem.online/anydesk.apk" },
+    { "id": "s11", "label": "scam", "kind": "trading_group", "text": "Namaste, I am assistant to Mr. Vikram Mehta, chief analyst. Our stock group members earned 300% in 2 months. Join free: https://chat.whatsapp.com/xxxxx. Today only, we share 3 free multibagger picks. Deposit minimum Rs.10000 in our partner app." },
+    { "id": "s12", "label": "scam", "kind": "impersonation", "text": "Hi beta this is uncle, I changed my number. I am stuck at hospital and need Rs.20000 urgently for admission. Please send to this UPI 9812345678@paytm right now, I will return tomorrow. Dont call, I am inside ICU." },
+
+    { "id": "g01", "label": "genuine", "kind": "bank_fraud_alert", "text": "URGENT: Rs.49,999 debited from a/c XX4471 on 04-09-26 for purchase at ELECTROHUB. If this was not you, block your card immediately at https://hdfcbank.com/blockcard. Do not share your OTP or card details with anyone." },
+    { "id": "g02", "label": "genuine", "kind": "otp", "text": "123456 is your OTP for login to your ICICI Bank account. Valid for 10 minutes. Do not share this OTP with anyone including bank staff. -ICICI Bank" },
+    { "id": "g03", "label": "genuine", "kind": "delivery", "text": "Your Amazon.in order of Boat Rockerz 450 has been dispatched and will be delivered today between 2 PM and 6 PM. Track at https://amazon.in/orders" },
+    { "id": "g04", "label": "genuine", "kind": "utility_bill", "text": "Dear Consumer, your TGSPDCL electricity bill for Aug 2026 is Rs.1,842 due on 12-09-2026. Pay online at https://tgsouthernpower.org or at any authorised centre to avoid late payment charges." },
+    { "id": "g05", "label": "genuine", "kind": "travel", "text": "IRCTC: Your ticket PNR 4521789630 for TRAIN 12723 on 09-09-2026 is CONFIRMED, coach B4 seat 32. Please carry a valid photo ID. Check status at https://irctc.co.in" },
+    { "id": "g06", "label": "genuine", "kind": "college", "text": "Attention students: Mid-term examination timetable for B.Tech CSE Semester 5 has been published on the department noticeboard and college portal. Practical exams begin 15 September. - Examination Branch" },
+    { "id": "g07", "label": "genuine", "kind": "subscription", "text": "Your Netflix membership payment of Rs.649 was successful. Your next billing date is 04 October 2026. Manage your plan any time in Account settings." },
+    { "id": "g08", "label": "genuine", "kind": "card_reminder", "text": "Reminder: Your Axis Bank credit card XX8812 total due of Rs.14,206 is payable by 10-09-2026. Pay via the Axis Mobile app or net banking to avoid interest charges." }
+  ]
+}
